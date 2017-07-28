@@ -17,10 +17,17 @@ final class MenuController {
     private let applicationManager: ApplicationController
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
 
+    private var observeId: String?
+
     init(markService: MarkService = .shared, windowManager: WindowController = .shared, applicationManager: ApplicationController = .shared) {
         self.markService = markService
         self.windowManager = windowManager
         self.applicationManager = applicationManager
+    }
+
+    deinit {
+        guard let observeId = self.observeId else { return }
+        markService.unregisterObserverBlock(id: observeId)
     }
 
     func setup() {
@@ -28,13 +35,18 @@ final class MenuController {
         image?.isTemplate = true
         statusItem.image = image
         statusItem.highlightMode = true
-        statusItem.menu = makeMenu()
+        statusItem.menu = makeMenu(marks: markService.marks)
+
+        self.observeId = markService.register { [weak self] (marks) in
+            guard let menu = self?.makeMenu(marks: marks) else { return }
+            self?.statusItem.menu = menu
+        }
     }
 
-    func makeMenu() -> NSMenu {
+    func makeMenu(marks: [Mark]) -> NSMenu {
         let menu = NSMenu()
 
-        for mark in markService.marks {
+        for mark in marks {
             let menuItem = MarkMenuItem()
             menuItem.target = self
             menuItem.action = #selector(didSelectMarkMenuItem(_:))

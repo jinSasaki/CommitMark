@@ -6,7 +6,7 @@
 
 If you find bugs, please create a new issue.
 
-[DOWNLOAD](https://github.com/jinSasaki/CommitMark/releases/tag/0.2.0)
+[DOWNLOAD](https://github.com/jinSasaki/CommitMark/releases/latest)
 
 ## Features
 - Run on Menu bar

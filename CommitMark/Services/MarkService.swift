@@ -24,6 +24,7 @@ final class MarkService {
     private static var defaultMarks: [Mark] {
         return[
             Mark(code: ":heavy_plus_sign:", description: "➕ 機能を追加したとき"),
+            Mark(code: ":wrench:", description: "🔧 仕様を変更したとき"),
             Mark(code: ":art:", description: "🎨 コードの可読性や保守性を改善したとき"),
             Mark(code: ":racehorse:", description: "🐎 パフォーマンスを改善したとき"),
             Mark(code: ":bug:", description: "🐛 バグを修正したとき"),
@@ -31,10 +32,10 @@ final class MarkService {
             Mark(code: ":arrow_down:", description: "🔽 バージョンを下げたとき"),
             Mark(code: ":bird:", description: "🐦 Swift化をしたとき"),
             Mark(code: ":fire:", description: "🔥 コードやファイルを削除したとき"),
+            Mark(code: ":package:", description: "📦 ファイルを移動したとき"),
             Mark(code: ":shirt:", description: "👕 warningを取り除いた時"),
             Mark(code: ":white_check_mark:", description: "✅ テストを追加・編集したとき"),
             Mark(code: ":memo:", description: "📝 ドキュメントを書いたとき"),
-            Mark(code: ":wrench:", description: "🔧 仕様を変更したとき"),
             Mark(code: ":ok:", description: "🆗 なにかOKな変更をしたとき")
         ]
     }
